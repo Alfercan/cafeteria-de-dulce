@@ -407,7 +407,7 @@ function initModal() {
     if (!article) return;
     const img = article.querySelector('img');
     if (!img) return;
-    const pid = img.src.match(/productos\/([^.]+)\.jpg/)?.[1] || '';
+    const pid = img.src.match(/\/([^\/]+)\.\w+$/)?.[1] || '';
     openModal(pid, img.src);
   });
 
