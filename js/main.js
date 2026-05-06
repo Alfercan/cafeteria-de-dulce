@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    Granada De Dulce — Scroll Animations + Video Scrub
    ============================================================ */
 
@@ -68,7 +68,7 @@ function initNavbar() {
 
 /* ──────────────────────────────────────────────
    VIDEO SCRUB (Apple-style hero)
-   Coloca assets/hero.mp4 y el efecto se activa
+   Coloca hero.mp4 y el efecto se activa
    automáticamente: la sección queda anclada y el
    vídeo avanza fotograma a fotograma con el scroll.
 ────────────────────────────────────────────── */
@@ -94,7 +94,7 @@ function initVideoScrub() {
     if (fallback) fallback.style.display = 'block';
   });
 
-  video.src = 'assets/hero.mp4';
+  video.src = 'hero.mp4';
   hero.insertBefore(video, hero.firstChild);
 }
 
