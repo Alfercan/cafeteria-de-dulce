@@ -1465,3 +1465,156 @@ footer {
   .hero-title { font-size: clamp(3.5rem, 18vw, 5rem); }
 }
 
+/* ============================================================
+   RESEÑAS
+   ============================================================ */
+.resenas-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .875rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.resenas-score {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.resenas-stars {
+  font-size: 1.25rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+.resenas-fuente {
+  font-size: .75rem;
+  color: var(--text-muted);
+  letter-spacing: .08em;
+}
+
+.resenas-carousel-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+/* Flechas */
+.resenas-arrow {
+  flex-shrink: 0;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid rgba(196,145,74,.3);
+  color: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .25s, border-color .25s, color .25s;
+  padding: 0;
+}
+.resenas-arrow:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+.resenas-arrow:disabled { opacity: .25; pointer-events: none; }
+
+/* Track */
+.resenas-track { flex: 1; overflow: hidden; }
+
+/* Cards */
+.resena-card {
+  display: none;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid rgba(196,145,74,.18);
+  border-radius: 16px;
+  padding: 2.5rem 2.25rem 2rem;
+  box-shadow: 0 4px 24px rgba(28,15,5,.06);
+  animation: resenaIn .4s cubic-bezier(.16,1,.3,1);
+}
+.resena-card.active { display: flex; }
+
+@keyframes resenaIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.resena-quote {
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  line-height: .8;
+  color: var(--gold);
+  opacity: .35;
+  margin-bottom: .5rem;
+}
+.resena-texto {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+.resena-estrellas {
+  font-size: 1.125rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: 1.125rem;
+}
+.resena-sep {
+  height: 1px;
+  background: rgba(196,145,74,.2);
+  margin-bottom: 1.125rem;
+}
+.resena-autor {
+  display: flex;
+  align-items: center;
+  gap: .875rem;
+}
+.resena-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), #8B5E2A);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .9375rem;
+  color: #fff; flex-shrink: 0;
+}
+.resena-nombre {
+  display: block;
+  font-weight: 600;
+  font-size: .9375rem;
+  color: var(--dark);
+}
+.resena-fecha {
+  display: block;
+  font-size: .75rem;
+  color: var(--text-muted);
+  margin-top: .15rem;
+}
+
+/* Dots */
+.resenas-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 1.75rem;
+}
+.resenas-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(196,145,74,.25);
+  border: none; cursor: pointer; padding: 0;
+  transition: all .3s;
+}
+.resenas-dot.active {
+  width: 24px; border-radius: 4px;
+  background: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .resenas-carousel-wrap { gap: .625rem; }
+  .resenas-arrow { width: 38px; height: 38px; }
+  .resena-card { padding: 1.75rem 1.25rem 1.5rem; }
+  .resena-texto { font-size: .9375rem; }
+}
+

@@ -520,6 +520,60 @@ function initSmoothLinks() {
 }
 
 /* ──────────────────────────────────────────────
+   CAROUSEL RESEÑAS
+────────────────────────────────────────────── */
+function initResenas() {
+  const cards   = Array.from(document.querySelectorAll('.resena-card'));
+  const prevBtn = document.querySelector('.resenas-prev');
+  const nextBtn = document.querySelector('.resenas-next');
+  const dotsWrap= document.querySelector('.resenas-dots');
+  if (!cards.length || !prevBtn) return;
+
+  let current = 0;
+
+  /* Crear dots */
+  cards.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'resenas-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Reseña ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  const dots = Array.from(dotsWrap.children);
+
+  function goTo(n) {
+    if (n === current) return;
+    const dir = n > current ? 1 : -1;
+    cards[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    cards[current].classList.add('active');
+    dots[current].classList.add('active');
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === cards.length - 1;
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+  prevBtn.disabled = true;
+
+  /* Swipe táctil */
+  let startX = 0, moved = false;
+  const track = document.querySelector('.resenas-track');
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; moved = false; }, { passive: true });
+  track.addEventListener('touchmove',  () => { moved = true; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    if (!moved) return;
+    const dx = startX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 45) {
+      if (dx > 0 && current < cards.length - 1) goTo(current + 1);
+      if (dx < 0 && current > 0) goTo(current - 1);
+    }
+  }, { passive: true });
+}
+
+/* ──────────────────────────────────────────────
    INIT
 ────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -531,4 +585,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccordions();
   initModal();
   initSmoothLinks();
+  initResenas();
 });
