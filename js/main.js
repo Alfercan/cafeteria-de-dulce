@@ -75,62 +75,27 @@ function initNavbar() {
 function initVideoScrub() {
   const canvas   = document.getElementById('hero-canvas');
   const fallback = document.getElementById('hero-fallback');
-  const ctx      = canvas.getContext('2d');
+  const hero     = document.getElementById('hero');
 
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
+  /* Vídeo en bucle automático — sin efecto scroll */
   const video = document.createElement('video');
   video.muted      = true;
   video.playsInline = true;
-  video.preload    = 'auto';
+  video.autoplay   = true;
+  video.loop       = true;
+  video.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;';
 
-  let ready = false;
-
-  video.addEventListener('loadedmetadata', () => {
-    resize();
-    fallback.style.display = 'none';
-    canvas.style.display   = 'block';
-    ready = true;
-    video.currentTime = 0;
-
-    /* Pin hero + avanzar vídeo con scroll */
-    ScrollTrigger.create({
-      trigger : '#hero',
-      start   : 'top top',
-      end     : '+=250%',
-      pin     : true,
-      scrub   : 1.2,
-      onUpdate(self) {
-        if (video.duration) {
-          const t = self.progress * video.duration;
-          if (Math.abs(video.currentTime - t) > 0.033) {
-            video.currentTime = t;
-          }
-        }
-      }
-    });
+  video.addEventListener('canplay', () => {
+    if (fallback) fallback.style.display = 'none';
+    canvas.style.display = 'none';
   });
 
-  /* Dibuja el frame cada vez que el vídeo seekea */
-  video.addEventListener('seeked', () => {
-    if (ready) ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-  });
-
-  /* Sin vídeo → mantener fallback animado, sin pin */
   video.addEventListener('error', () => {
-    canvas.style.display   = 'none';
-    fallback.style.display = 'block';
+    if (fallback) fallback.style.display = 'block';
   });
 
   video.src = 'assets/hero.mp4';
-
-  window.addEventListener('resize', () => {
-    resize();
-    if (ready) ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-  });
+  hero.insertBefore(video, hero.firstChild);
 }
 
 /* ──────────────────────────────────────────────
