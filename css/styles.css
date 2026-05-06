@@ -1472,7 +1472,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .875rem;
+  gap: .75rem;
   margin-top: 1rem;
   flex-wrap: wrap;
 }
@@ -1492,6 +1492,28 @@ footer {
   font-size: .75rem;
   color: var(--text-muted);
   letter-spacing: .08em;
+}
+.resenas-google-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.btn-google-resenas {
+  display: inline-flex;
+  align-items: center;
+  gap: .625rem;
+  padding: .75rem 1.75rem;
+  border: 1.5px solid rgba(196,145,74,.3);
+  border-radius: 100px;
+  font-size: .8125rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color .25s, box-shadow .25s;
+}
+.btn-google-resenas:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(196,145,74,.15);
 }
 
 .resenas-carousel-wrap {
