@@ -197,22 +197,6 @@ address { font-style: normal; }
   background: var(--dark);
 }
 
-/* Tapa la marca de agua en la esquina inferior derecha */
-#hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0; right: 0;
-  width: 380px; height: 160px;
-  background: linear-gradient(
-    to top left,
-    rgba(20,12,6,1) 0%,
-    rgba(20,12,6,1) 25%,
-    rgba(20,12,6,.85) 50%,
-    transparent 100%
-  );
-  z-index: 10;
-  pointer-events: none;
-}
 
 #hero-canvas {
   position: absolute;
