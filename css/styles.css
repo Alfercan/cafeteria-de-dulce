@@ -1465,15 +1465,3 @@ footer {
   .hero-title { font-size: clamp(3.5rem, 18vw, 5rem); }
 }
 
-/* Cubre la marca de agua con blur del propio vídeo */
-.hero-wm-cover {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 220px;
-  height: 90px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  z-index: 5;
-  pointer-events: none;
-}
