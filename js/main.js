@@ -83,7 +83,7 @@ function initVideoScrub() {
   video.playsInline = true;
   video.autoplay   = true;
   video.loop       = true;
-  video.style.cssText = 'position:absolute;top:0;bottom:0;height:100%;width:130%;left:-15%;object-fit:cover;z-index:1;';
+  video.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;';
 
   video.addEventListener('canplay', () => {
     if (fallback) fallback.style.display = 'none';
